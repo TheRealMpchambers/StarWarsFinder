@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
-var friends = require('./../data/friends');
+const express = require('express'),
+    router = express.Router(),
+    path = require('path'),
+    friends = require('./../data/friends');
 
 // API Routes
 router.get('/api/friends', function (req, res) {
-    res.send(friends);
+    res.json(friends);
 });
 
 router.post('/api/friends', function (req, res) {
@@ -28,8 +28,8 @@ router.post('/api/friends', function (req, res) {
     }
 
     // Calculate my total score
-    var myScores = userData.scores;
-    var myTotalScore = sum(myScores);
+    const myScores = userData.scores;
+    const myTotalScore = sum(myScores);
 
     // Calculate friends total scores
     for (i = 0; i < friends.length; i++) {
@@ -39,13 +39,13 @@ router.post('/api/friends', function (req, res) {
     // Determine closest match
     var differencesArray = [];
     for (i = 0; i < friends.length; i++) {
-        var totalDifference = Math.abs(myTotalScore - friendsTotalScore);
+        var totalDifference = Math.abs(myTotalScore - sum(friends[i].scores));
         differencesArray.push(totalDifference);
     }
     var min = Math.min.apply(Math, differencesArray);
     var x = differencesArray.indexOf(min);
 
-    res.send(friends[x]);
+    res.json(friends[x]);
     
     friends.push(req.body);
 });
