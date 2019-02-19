@@ -11,10 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
+
+app.post('/api/friends', apiRoutes);
+app.get('/api/friends', apiRoutes);
 app.use('/', htmlRoutes);
 app.use('/survey', htmlRoutes);
-app.get('/api/friends', apiRoutes);
-app.post('/api/friends', apiRoutes);
 
 app.listen(PORT, function () {
     console.log('App listening on PORT ' + PORT);

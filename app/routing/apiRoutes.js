@@ -1,11 +1,11 @@
 const express = require('express'),
     router = express.Router(),
     path = require('path'),
-    friends = require('./../data/friends');
+    friends = require('../data/friends');
 
 // API Routes
 router.get('/api/friends', function (req, res) {
-    res.json(friends);
+    res.send(friends);
 });
 
 router.post('/api/friends', function (req, res) {
@@ -45,7 +45,7 @@ router.post('/api/friends', function (req, res) {
     var min = Math.min.apply(Math, differencesArray);
     var x = differencesArray.indexOf(min);
 
-    res.json(friends[x]);
+    res.send(friends[x]);
     
     friends.push(req.body);
 });
